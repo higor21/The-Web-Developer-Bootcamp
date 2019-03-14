@@ -1,0 +1,15 @@
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.img-responsive {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+#more_info {
+    margin-left: 5px;
+}
