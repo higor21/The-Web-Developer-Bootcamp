@@ -15,4 +15,6 @@ After these steps are ready, you need to run the following codes:
 
 - make a folder and within her write **git clone git@github.com:higor21/The-Web-Developer-Bootcamp.git**
 - execute 'npm install' command
-- is almost ready, now only run **node app.js** and see the application running in the browser 
+- is almost ready, now only run **node app.js** and see the application running in the browser
+
+**Note:** The site is still under development
