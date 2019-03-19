@@ -13,7 +13,7 @@ middlewareObj.isLoggedIn = function(req, res, next){
 middlewareObj.checkPermissionToEdit = function(req, res, next){
     if(req.isAuthenticated()){
         Comment.findById(req.params.idComment, function(err, foundComment) {
-            if(foundComment.author.id.equals(req.user._id) && !err)
+            if(!err && foundComment.author.id.equals(req.user._id))
                 next()
             else{
                 req.flash("error", "You don't have permission to do that!")
@@ -31,7 +31,7 @@ middlewareObj.checkPermissionToRemove = function(req, res, next){
         Comment.findById(req.params.idComment, function(err, foundComment) {
             if(!err)
                 Campground.findById(req.params.id, function(err, foundCamp) {
-                    if((foundComment.author.id.equals(req.user._id) || foundCamp.author.id.equals(req.user._id)) && !err)
+                    if(!err && (req.user.isAdmin || foundComment.author.id.equals(req.user._id) || foundCamp.author.id.equals(req.user._id)))
                         next()
                     else{
                         req.flash("error", "You don't have permission to do that!")
@@ -48,7 +48,7 @@ middlewareObj.checkPermissionToRemove = function(req, res, next){
 middlewareObj.checkCampgroundOwnership = function(req, res, next){
     if(req.isAuthenticated()){
         Campground.findById(req.params.id, function(err, camp) {
-            if(camp.author.id.equals(req.user._id) && !err)
+            if(!err && (camp.author.id.equals(req.user._id) || req.user.isAdmin))
                 next()
             else{
                 req.flash("error", "You don't have permission to do that!")

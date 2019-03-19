@@ -6,12 +6,13 @@
         <!-- Make site responsive on mobile/tablet -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/stylesheet/app.css">
     </head>
     <body>
         
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -28,13 +29,24 @@
                     <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                      <% if(!currentUser){ %>
-                          <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
-                          <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>"><a href="/register">Sign Up</a></li>
-                      <% } else { %>
-                          <li><a href="#">Signed In As <%= currentUser.username %></a></li>
-                          <li><a href="/logout">Logout</a></li>
-                      <% } %>
+                    <% if(!currentUser){ %>
+                        <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
+                        <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>"><a href="/register">Sign Up</a></li>
+                    <% } else { %>
+                        <li>
+                            <div class="row" style="display: inline-flex; padding: 5px;">
+                                <div class="col-8">
+                                    <a href="#" style="color: gray;">Signed In As <%= currentUser.username %></a>
+                                </div>
+                                <div class="col-4">
+                                    <% if(currentUser.isAdmin) { %>
+                                        <p style="color: green; display: inline">(Admin)</p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="/logout">Logout</a></li>
+                    <% } %>
                   </ul>
                 </div>
             </div>

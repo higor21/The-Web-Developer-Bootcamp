@@ -3,7 +3,7 @@
 <div class="row">
     <h1 style="text-align: center;">Sign Up</h1>
     <div style="width: 30%; margin: 25px auto;">
-        <form action="/register?admin=false" method="POST">
+        <form action="/register?admin=true" method="POST">
             <div class="form-group">
                 <input class="form-control" type="text" name="username" placeholder="username">
             </div>
@@ -11,13 +11,16 @@
                 <input  class="form-control" type="password" name="password" placeholder="password">
             </div>
             <div class="form-group">
-                <input  class="form-control" type="text" name="firstname" placeholder="first name">
+                <input  class="form-control" type="text" name="first_name" placeholder="first name">
             </div>
             <div class="form-group">
-                <input  class="form-control" type="text" name="lastname" placeholder="last name">
+                <input  class="form-control" type="text" name="last_name" placeholder="last name">
             </div>
             <div class="form-group">
                 <input  class="form-control" type="email" name="email" placeholder="examplename@example.com">
+            </div>
+            <div class="form-group">
+                <input  class="form-control" type="password" name="admin_code" placeholder="admin_code">
             </div>
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Sign Up</button>

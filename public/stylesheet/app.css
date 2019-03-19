@@ -6,10 +6,61 @@
     width: 100%;
 }
 
+body {
+  padding-top: 70px !important;
+}
+
 .thumbnail {
     padding: 0;
 }
 
 #more_info {
     margin-left: 5px;
+}
+
+.resume .list-group-item:first-child, .resume .list-group-item:last-child{
+  border-radius:0;
+}
+
+/*makes an anchor inactive(not clickable)*/
+.inactive-link {
+   pointer-events: none;
+   cursor: default;
+}
+
+.resume-heading .social-btns{
+  margin-top:15px;
+}
+
+.resume-heading .social-btns i.fa{
+  margin-left:-5px;
+}
+
+@media (max-width: 992px) {
+  .resume-heading .social-btn-holder{
+    padding:5px;
+  }
+}
+
+/*social buttons*/
+.btn-social{
+  color: white;
+  opacity:0.9;
+}
+.btn-social:hover {
+  color: white;
+    opacity:1;
+}
+
+.btn-facebook {
+background-color: #3b5998;
+opacity:0.9;
+}
+.btn-linkedin {
+background-color:#0e76a8;
+opacity:0.9;
+}
+.btn-github{
+  background-color:#000000;
+  opacity:0.9;
 }

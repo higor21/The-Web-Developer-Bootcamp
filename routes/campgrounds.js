@@ -10,12 +10,10 @@ router.use(methodOverride("_method"))
 // Routes for Campgrounds
 
 router.get("/", function(req, res){
-    console.log(req.user)
     Campground.find({}, function(err, all_camps){
         if(err){
             res.send("Error to find campgrounds!")
         }else{
-            console.log("campgrounds returned as success: " + all_camps)
             res.render("campgrounds/campgrounds", {camps: all_camps, page: 'campgrounds'})
         }
     })
@@ -50,9 +48,8 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         }
     }, function(err, camp){
         if(err)
-            console.log("Something went wrong");
+            res.send("Something went wrong");
         else{
-            console.log("Campground added: ", camp);
             res.redirect("/campgrounds")
         }
     })
@@ -67,9 +64,8 @@ router.get("/:id", function(req, res) {
     // The 'populate("attribute").exec(function(vars ...){...})' serves to become "attribute" ids into their value
     Campground.findById(req.params.id).populate("comments").exec(function(err, obj){
         if(err)
-            console.log("Something went wrong!")
+            res.send("Something went wrong!")
         else{
-            console.log("camp: " + obj)
             res.render("campgrounds/show", {camp: obj})
         }
     })

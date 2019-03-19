@@ -10,7 +10,8 @@ var express         = require("express"),
 
 var authRoutes      = require("./routes/auths"),
     commentRoutes   = require("./routes/comments"),
-    campRoutes      = require("./routes/campgrounds")
+    campRoutes      = require("./routes/campgrounds"),
+    userRoutes      = require("./routes/user")
 
 app.use(flash())
 
@@ -54,6 +55,7 @@ app.get("/", function(req, res){
 app.use("/campgrounds", campRoutes)
 app.use("/campgrounds/:id/comments", commentRoutes)
 app.use("/", authRoutes)
+app.use("/user", userRoutes)
 
 app.listen(process.env.PORT, process.env.ID, function(){
     console.log("The YelpCamp Server has started!")

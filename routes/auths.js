@@ -7,17 +7,36 @@ var express     = require("express"),
 // Auth Routes
 
 router.get("/register", function(req, res) {
-    res.render("register", {page: 'register'})
+    res.render("register",{page: 'register'})
+})
+
+router.get("/registerAdmin", function(req, res) {
+    res.render("registerAdmin")
 })
 
 router.post("/register", function(req, res) {
-    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+    var user = new User({
+        username: req.body.username,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email
+    })
+    var msg = "Successfully Signed Up! Nice to meet you " + req.body.username;
+    
+    if(req.query.admin == 'true'){
+        if(req.body.admin_code == 'ad_code_7496'){
+            user.isAdmin = true;
+            msg += ". LOGGED IN AS ADMINISTER"
+        }else
+            msg += ". LOGGED IN AS COMMOM USER"
+    }
+    
+    User.register(user, req.body.password, function(err, user){
         if(err){
-            console.log(err)
             return res.render("register", {error: err.message})
         }
         passport.authenticate("local")(req, res, function(){
-            req.flash("success", "Successfully Signed Up! Nice to meet you " + req.body.username)
+            req.flash("success", msg)
             res.redirect("/campgrounds")
         })
     })

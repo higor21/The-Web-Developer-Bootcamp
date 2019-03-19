@@ -31,7 +31,7 @@ router.delete("/:idComment", middleware.checkPermissionToRemove, function(req, r
 })
 
 router.get("/:idComment/edit", middleware.checkPermissionToEdit, function(req, res){
-    Comment.findById(req.params.idComment, function(err, comment) {
+    Comment.findById(req.params.idComment, function(err, comment){
         if(err)
             res.redirect("back")
         else{
